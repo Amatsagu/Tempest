@@ -7,11 +7,12 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"tempest/misc"
 	"time"
 )
 
-type Rest struct {
+type rest struct {
 	Token                  string           `binding:"required" example:"Bot XYZABCEWQ"` // Discord Bot/App token. Remember to add "Bot" prefix.
 	MaxRequestsBeforeSweep uint8            `default:"100"`
 	GlobalRequestLimit     uint8            `default:"50"`
@@ -28,7 +29,7 @@ type rateLimitError struct {
 	RetryAfter float32 `json:"retry_after"`
 }
 
-func (rest Rest) Request(method string, route string, jsonPayload interface{}) []byte {
+func (rest rest) Request(method string, route string, jsonPayload interface{}) []byte {
 	rest.globalRequests++
 	rest.requestsSinceSweep++
 
@@ -131,4 +132,21 @@ func (rest Rest) Request(method string, route string, jsonPayload interface{}) [
 	}
 
 	return body
+}
+
+func CreateRest(token string) rest {
+	if !strings.HasPrefix(token, "Bot ") {
+		panic("App token needs to start with \"Bot \" prefix. For example: Bot XYZABCQEWQ")
+	}
+
+	return rest{
+		Token:                  token,
+		MaxRequestsBeforeSweep: 100,
+		GlobalRequestLimit:     50,
+		globalRequests:         0,
+		requestsSinceSweep:     0,
+		lockedTo:               0,
+		locks:                  make(map[string]int64, 100),
+		fails:                  0,
+	}
 }

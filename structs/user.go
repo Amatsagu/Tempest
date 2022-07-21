@@ -41,10 +41,10 @@ func (user User) FetchAvatarUrl() string {
 	}
 
 	if strings.HasPrefix(user.AvatarHash, "a_") {
-		return misc.DiscordAPIUrl + "/avatars" + user.Id + user.AvatarHash + ".gif"
+		return misc.DiscordCDNUrl + "/avatars/" + user.Id + "/" + user.AvatarHash + ".gif"
 	}
 
-	return misc.DiscordAPIUrl + "/avatars" + user.Id + user.AvatarHash
+	return misc.DiscordCDNUrl + "/avatars/" + user.Id + "/" + user.AvatarHash
 }
 
 /* Returns a direct url to user's banner. It'll return empty string if targeted user don't use avatar. */
@@ -54,8 +54,8 @@ func (user User) FetchBannerUrl() string {
 	}
 
 	if strings.HasPrefix(user.AvatarHash, "a_") {
-		return misc.DiscordAPIUrl + "/banners/" + user.Id + "/" + user.AvatarHash + ".gif"
+		return misc.DiscordCDNUrl + "/banners/" + user.Id + "/" + user.BannerHash + ".gif"
 	}
 
-	return misc.DiscordAPIUrl + "/banners/" + user.Id + "/" + user.AvatarHash
+	return misc.DiscordCDNUrl + "/banners/" + user.Id + "/" + user.BannerHash
 }

@@ -23,8 +23,8 @@ func (member Member) FetchGuildAvatarUrl() string {
 	}
 
 	if strings.HasPrefix(member.GuildAvatarHash, "a_") {
-		return misc.DiscordAPIUrl + "/guilds/" + member.GuildId + "/users/" + member.User.Id + "/avatars/" + member.GuildAvatarHash + ".gif"
+		return misc.DiscordCDNUrl + "/guilds/" + member.GuildId + "/users/" + member.User.Id + "/avatars/" + member.GuildAvatarHash + ".gif"
 	}
 
-	return misc.DiscordAPIUrl + "/guilds/" + member.GuildId + "/users/" + member.User.Id + "/avatars/" + member.GuildAvatarHash
+	return misc.DiscordCDNUrl + "/guilds/" + member.GuildId + "/users/" + member.User.Id + "/avatars/" + member.GuildAvatarHash
 }
