@@ -1,9 +1,9 @@
-import { ButtonInteraction, CommandInteraction } from "./interaction.d.ts";
-import { CommandHandler } from "./commandHandler.d.ts";
-import { Target, User } from "./target.d.ts";
 import { Command } from "./command.d.ts";
-import { Rest } from "./rest.d.ts";
+import { CommandHandler } from "./commandHandler.d.ts";
+import { ButtonInteraction, CommandInteraction } from "./interaction.d.ts";
 import { Content } from "./message.d.ts";
+import { Rest } from "./rest.d.ts";
+import { Target, User } from "./target.d.ts";
 
 export interface ClientOptions {
   /** The Rest Controller instance to use. */

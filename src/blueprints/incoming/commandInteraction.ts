@@ -25,6 +25,8 @@ export function processCommandInteraction(payload: Record<string, any>, applicat
     channelId: BigInt(payload.channel_id),
     guildId: payload.guild_id && BigInt(payload.guild_id),
     target: payload.guild_id ? processMember(payload.member, payload.guild_id) : processUser(payload.user),
+    permissions: BigInt(payload.app_permissions ?? 0),
+    locale: payload.locale,
     command: payload.data.name,
     subCommand: subCommand,
     options: options,

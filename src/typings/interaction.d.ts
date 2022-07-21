@@ -10,6 +10,10 @@ export interface CommandInteraction {
   guildId?: bigint;
   /** The user/member who triggered interaction. It's a Member type if happened inside of guild channel. */
   target: Target;
+  /** Since July 28, 2022 discord added "app_permissions" field which is a bot user permissions bitfield for this text channel. */
+  permissions: bigint;
+  /** Language that target is using. For example: "en-GB" */
+  locale: string;
   /** Used command name. */
   command: string;
   /** Used subcommand name if that's really a subcommand. */

@@ -1,5 +1,5 @@
-import { AutoCompleteInteraction } from "../../typings/interaction.d.ts";
 import { CommandChoice } from "../../typings/command.d.ts";
+import { AutoCompleteInteraction } from "../../typings/interaction.d.ts";
 import { RestRequestMethod } from "../../typings/rest.d.ts";
 
 // Don't convert id into bigint because it has too short lifespan! (Not worth)

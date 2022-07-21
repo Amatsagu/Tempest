@@ -1,7 +1,7 @@
-import { CommandHandler } from "./typings/commandHandler.d.ts";
-import { Command } from "./typings/command.d.ts";
 import { validate } from "../deps.ts";
 import { COMMAND_SCHEMA } from "./constants.ts";
+import { Command } from "./typings/command.d.ts";
+import { CommandHandler } from "./typings/commandHandler.d.ts";
 
 export function createCommandHandler<T extends Command>(): CommandHandler<T> {
   const cache = new Map<string, T & { subcommands: Record<string, T> }>();

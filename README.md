@@ -24,8 +24,8 @@ Library is already usable (even used in production!) but still misses a lot of e
 - [x] Select menus
 - [ ] User/Text messages commands
 - [ ] Modals
-- ❌ Multi-language support
-- ❌ Sending/receiving files
+
+❌ Multi-language support <br /> ❌ Sending/receiving files
 
 Elements with red cross won't be supported in this library because they would make code far more complex and barely
 anyone would use it. You can listen to raw payloads and freely use REST API if you want so if you feel you need those -

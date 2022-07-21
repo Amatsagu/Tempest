@@ -1,5 +1,5 @@
-import { User } from "../../typings/target.d.ts";
 import { CDN_URL } from "../../constants.ts";
+import { User } from "../../typings/target.d.ts";
 import { bigIntToHash, hashToBigInt } from "../../util.ts";
 
 export function processUser(payload: Record<string, any>): User {

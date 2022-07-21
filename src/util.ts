@@ -8,7 +8,7 @@ export function hexToUint8Array(hex: string) {
 
 /*
     STORE IDS AS BIGINTS
-    - Idea/Trick from: https://github.com/discordeno/discordeno
+    - Idea from: https://github.com/discordeno/discordeno
 */
 
 export function hashToBigInt(hash: string) {

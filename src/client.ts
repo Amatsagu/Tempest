@@ -1,14 +1,14 @@
-import { ClientOptions, Client, AwaitButtonBucket } from "./typings/client.d.ts";
-import { Command } from "./typings/command.d.ts";
-import { createCommandHandler } from "./commandHandler.ts";
-import { hexToUint8Array } from "./util.ts";
 import { sign } from "../deps.ts";
-import { processCommandInteraction } from "./blueprints/incoming/commandInteraction.ts";
 import { processAutoCompleteInteraction } from "./blueprints/incoming/autoCompleteInteraction.ts";
-import { processCommandsToDiscordStandard } from "./blueprints/outgoing/command.ts";
-import { processUser } from "./blueprints/incoming/user.ts";
 import { processButtonInteraction } from "./blueprints/incoming/buttonInteraction.ts";
+import { processCommandInteraction } from "./blueprints/incoming/commandInteraction.ts";
+import { processUser } from "./blueprints/incoming/user.ts";
+import { processCommandsToDiscordStandard } from "./blueprints/outgoing/command.ts";
 import { processContent } from "./blueprints/outgoing/message.ts";
+import { createCommandHandler } from "./commandHandler.ts";
+import { AwaitButtonBucket, Client, ClientOptions } from "./typings/client.d.ts";
+import { Command } from "./typings/command.d.ts";
+import { hexToUint8Array } from "./util.ts";
 
 export function createClient<T extends Command>(options: ClientOptions): Client {
   const commandHandler = createCommandHandler<T>();
@@ -53,8 +53,11 @@ export function createClient<T extends Command>(options: ClientOptions): Client 
       const commands = extra && Array.isArray(extra.whitelist) ? commandHandler.filter((cmd) => extra.whitelist!.includes(cmd.name)) : commandHandler.getCached();
 
       try {
-        if (extra?.guildId) await restRequest("PUT", `/applications/${applicationId}/guilds/${extra.guildId}/commands`, processCommandsToDiscordStandard(commands), true);
-        else await restRequest("PUT", `/applications/${applicationId}/commands`, processCommandsToDiscordStandard(commands), true);
+        if (extra?.guildId) {
+          await restRequest("PUT", `/applications/${applicationId}/guilds/${extra.guildId}/commands`, processCommandsToDiscordStandard(commands), true);
+        } else {
+          await restRequest("PUT", `/applications/${applicationId}/commands`, processCommandsToDiscordStandard(commands), true);
+        }
       } catch {
         throw new Error("Failed to bulk update discord cache. Your app probably reached limit of 100 global command updates per day, try again later.");
       }

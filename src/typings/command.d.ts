@@ -1,5 +1,5 @@
-import { AutoCompleteInteraction, CommandInteraction } from "./interaction.d.ts";
 import { Client } from "./client.d.ts";
+import { AutoCompleteInteraction, CommandInteraction } from "./interaction.d.ts";
 
 export interface Command {
   name: string;

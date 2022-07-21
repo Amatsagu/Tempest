@@ -1,5 +1,5 @@
-import { Member } from "../../typings/target.d.ts";
 import { CDN_URL } from "../../constants.ts";
+import { Member } from "../../typings/target.d.ts";
 import { bigIntToHash, hashToBigInt } from "../../util.ts";
 
 export function processMember(payload: Record<string, any>, guildId: string | bigint): Member {
